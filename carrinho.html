@@ -1,0 +1,65 @@
+<!doctype html>
+<html ng-app="carrinho">
+	
+	<head>
+		<meta charset="utf-8">
+		<title>Carrinho de Compras</title>
+		<script src="js/angular.js"></script>
+		<script src="js/controllers.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	</head>
+
+<div ng-controller="itensController">	
+	<h1>Sem bem vindo {{ nome }}! </h1>
+	<input type="text" class="form-control" ng-model="nome" placeholder="Informe o seu nome">
+	<br><br>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th colspan="3">Produtos Disponíveis</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in itens">
+				<td>
+					Produto: {{item.Produto}}
+				</td>
+				<td>
+					Preço: {{item.Preco}}
+				</td>
+				<td>
+					<button ng-model="item" ng-click="addItem(item)">Adicionar ao carrinho</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th colspan="3">Meu Carrinho</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-show="meusItens <= 0">
+				<td>
+					Não há itens no seu carrinho!
+				</td>
+			</tr>
+			<tr ng-repeat="meuItem in meusItens">
+				<td>
+					Produto: {{meuItem.Produto}}
+				</td>
+				<td>
+					Preço: {{meuItem.Preco}}
+				</td>
+				<td>
+					<button ng-model="meuItem" ng-click="removeItem(meuItem)">Remover do carrinho</button>
+				</td>
+			</tr>
+			<tr ng-show="meusItens <= 0">
+				Você tem {{ qtdCarrinho }} itens no carrinho!
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>
